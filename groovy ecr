@@ -1,0 +1,19 @@
+node {
+    stage ('gitcheckout') {
+        git 'https://github.com/swathivadlakonda/ecr-push.git'
+    }
+     stage('prmission') {
+         sh 'sudo chmod 777 /var/run/docker.sock'
+     }
+       stage ('build') {
+           sh 'docker build -t groovyecr .'
+           }
+               stage ('tag') {
+            sh 'docker tag groovyecr:latest 795529489155.dkr.ecr.us-east-2.amazonaws.com/groovyecr:latest'
+        }   
+stage ('docker hub') {
+     docker.withRegistry('https://795529489155.dkr.ecr.us-east-2.amazonaws.com/groovyecr', 'ecr:us-east-2:groovyecr-ecr-credentials') {
+sh 'docker push 795529489155.dkr.ecr.us-east-2.amazonaws.com/groovyecr:latest'
+}
+   }
+}
