@@ -1,1 +1,7 @@
 https://blog.mikesir87.io/2016/04/pushing-to-ecr-using-jenkins-pipeline-plugin/
+
+
+just fallow this link
+first we need to give the aws credentials in global credentials
+then in groovy script we need to mentioned ecr repo url and global credentila ID
+make sure all with the same name like ecr repo name and global credentila name must be same
